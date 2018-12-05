@@ -8,7 +8,6 @@
 //#include <sv-weap>
 #include <stringedit>
 #include <3DTryg>
-#pragma tabsize 0
 
 #define UUID_LEN (37)
 native UUID(result[], len = sizeof result);
@@ -18,15 +17,15 @@ native UUID(result[], len = sizeof result);
 #define SERVER_GAMETEXT "CSGO"
 #define SERVER_MAPNAME "CSGO"
 #define SERVER_WEBURL "www.sa-mp.com"
-#define SERVER_LANGUAGE "ÖĞ/English"
+#define SERVER_LANGUAGE "ä¸­/English"
 #define SERVER_OWNER "WDTK"
 
 #define MYSQL_HOST "127.0.0.1"
 #define MYSQL_USER " "
 #define MYSQL_PASS " "
 #define MYSQL_DB   "csgo"
-#define MYSQL_DB_USER "ÓÃ»§"
-#define MYSQL_DB_USER_INV "±³°ü"
+#define MYSQL_DB_USER "ç”¨æˆ·"
+#define MYSQL_DB_USER_INV "èƒŒåŒ…"
 
 #define HOLDING(%0) \
 	((newkeys & (%0)) == (%0))
@@ -60,7 +59,7 @@ new string32[32];
 #define PLAYER_INTFACE_WORLD 1000
 //new Timer#SecondUpdate=NONE;
 /******************************************************************************/
-enum Account_InFo//Íæ¼ÒÊı¾İ 
+enum Account_InFo//ç©å®¶æ•°æ® 
 {
 	_Index,
 	_Key[64],
@@ -114,7 +113,7 @@ enum PlayerGameWeapon_InFo
 new PlayerGameWeapon[MAX_PLAYERS][PlayerGameWeapon_InFo];
 #define GAMEWORLD_LIMIT MAX_PLAYERS
 #define GameRoomWorld(%0) GAMEWORLD_LIMIT+%0
-#define MAX_GAMEROOMS 20//ÓÎÏ··¿¼äÊı¾İ
+#define MAX_GAMEROOMS 20//æ¸¸æˆæˆ¿é—´æ•°æ®
 #define SYSTEM_OWNER -255
 #define SYSTEM_NULL -256
 enum GameRoom_InFo
@@ -167,17 +166,17 @@ new GameRoomTeamTag[MAX_GAMEROOMS][GameRoomTeamTag_InFo];
 #define MAX_GAMEROOMTAGDRAWS 3
 new Text:GameRoomTagDraw[MAX_GAMEROOMTAGDRAWS]= {Text:INVALID_TEXT_DRAW, ...};
 
-enum GameMode_Info//ÓÎÏ·Ä£Ê½
+enum GameMode_Info//æ¸¸æˆæ¨¡å¼
 {
     _Name[32],
     _Mod@Name
 }
 new GameMode[][GameMode_Info] =
 {
-    {"ÆÕÍ¨Èü",-2089}
+    {"æ™®é€šèµ›",-2089}
 };
 
-enum GameMaxPlayer_Info//ÓÎÏ·×î´óÈËÊı
+enum GameMaxPlayer_Info//æ¸¸æˆæœ€å¤§äººæ•°
 {
     _Amount
 }
@@ -195,7 +194,7 @@ new GameMaxPlayer[][GameMaxPlayer_Info] =
     {28},
     {30}
 };
-enum Map_Info//ÓÎÏ·µØÍ¼Êı¾İ
+enum Map_Info//æ¸¸æˆåœ°å›¾æ•°æ®
 {
     _Name[32],
     _Mod@Name,
@@ -209,16 +208,16 @@ enum Map_Info//ÓÎÏ·µØÍ¼Êı¾İ
 }
 new Map[][Map_Info] =
 {
-    {"¼¯×°Ïä",-2076,-2007,8072.1938,-7590.0269,15.3666,8167.7632,-7539.1250,15.3666},
-    {"¹Å±¤",-2077,-2035,9433.0000,-8785.9131,30.3850,9580.1826,-8763.8047,23.0410},
-    {"»ğ³µÕ¾",-2078,-2036,-4404.7939,-6756.4443,17.5719,-4180.0898,-6782.3784,11.9720},
-    {"É³Ä®1",-2079,-2036,1067.0435,-3847.5522,10.6155,1059.6620,-3753.0547,9.2173},
-    {"É³Ä®2",-2080,-2036,7698.5835,-2647.4639,18.4302,7743.2515,-2567.6052,18.4135},
-    {"Ñ©µØ",-2081,-2036,1531.2164,-8773.7920,9.9638,1565.0527,-8840.2539,9.9582},
-    {"Òâ´óÀû1",-2082,-2036,665.6163,-2326.6270,107.5576,681.7640,-2399.4373,107.2728},
-    {"Òâ´óÀû2",-2083,-2036,1141.2037,-3754.0291,4.6119,1188.7896,-3846.9490,7.2464}
+    {"é›†è£…ç®±",-2076,-2007,8072.1938,-7590.0269,15.3666,8167.7632,-7539.1250,15.3666},
+    {"å¤å ¡",-2077,-2035,9433.0000,-8785.9131,30.3850,9580.1826,-8763.8047,23.0410},
+    {"ç«è½¦ç«™",-2078,-2036,-4404.7939,-6756.4443,17.5719,-4180.0898,-6782.3784,11.9720},
+    {"æ²™æ¼ 1",-2079,-2036,1067.0435,-3847.5522,10.6155,1059.6620,-3753.0547,9.2173},
+    {"æ²™æ¼ 2",-2080,-2036,7698.5835,-2647.4639,18.4302,7743.2515,-2567.6052,18.4135},
+    {"é›ªåœ°",-2081,-2036,1531.2164,-8773.7920,9.9638,1565.0527,-8840.2539,9.9582},
+    {"æ„å¤§åˆ©1",-2082,-2036,665.6163,-2326.6270,107.5576,681.7640,-2399.4373,107.2728},
+    {"æ„å¤§åˆ©2",-2083,-2036,1141.2037,-3754.0291,4.6119,1188.7896,-3846.9490,7.2464}
 };
-#define MAX_MAPOBJS 300//¼ÓÔØµØÍ¼Êı¾İ
+#define MAX_MAPOBJS 300//åŠ è½½åœ°å›¾æ•°æ®
 new GameRoomMapObjects[MAX_GAMEROOMS][MAX_MAPOBJS];
 new Iterator:GameRoomMapObjects[MAX_GAMEROOMS]<MAX_MAPOBJS>;
 /******************************************************************************/
@@ -241,7 +240,7 @@ enum PlayerGlobalInv_InFo
 };
 new PlayerGlobalInv[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SLOTS][PlayerGlobalInv_InFo];
 new Iterator:PlayerGlobalInv[MAX_PLAYERS]<MAX_PLAYERGLOBALINV_SLOTS>;
-/************************************************************///±³°üÁĞ±í
+/************************************************************///èƒŒåŒ…åˆ—è¡¨
 #define MAX_PLAYRTGLOBALINVBACKTEXTDRAWS 9
 new Text:PlayerGlobalInvBackTextDraw[MAX_PLAYRTGLOBALINVBACKTEXTDRAWS];
 
@@ -256,19 +255,19 @@ new PlayerGlobalInvPrevieRate[MAX_PLAYERS];
 new PlayerGlobalInvClickID[MAX_PLAYERS];
 
 
-new PlayerText:PlayerGlobalInvListBg[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//ÁĞ±í±³¾°
-new PlayerText:PlayerGlobalInvListModel[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//ÁĞ±íÎïÆ·Ä£ĞÍÔ¤ÀÀ
-new PlayerText:PlayerGlobalInvListType[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//ÁĞ±íÎïÆ·ÀàĞÍ
-new PlayerText:PlayerGlobalInvListTypeName[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//ÁĞ±íÎïÆ·ÀàĞÍÃû³Æ
-new PlayerText:PlayerGlobalInvListAT[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//ÁĞ±íÎïÆ·ÊıÁ¿Ãû³Æ
-new PlayerText:PlayerGlobalInvListAmount[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//ÁĞ±íÎïÆ·ÊıÁ¿
-new PlayerText:PlayerGlobalInvListName[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//ÁĞ±íÎïÆ·Ãû³Æ
+new PlayerText:PlayerGlobalInvListBg[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//åˆ—è¡¨èƒŒæ™¯
+new PlayerText:PlayerGlobalInvListModel[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//åˆ—è¡¨ç‰©å“æ¨¡å‹é¢„è§ˆ
+new PlayerText:PlayerGlobalInvListType[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//åˆ—è¡¨ç‰©å“ç±»å‹
+new PlayerText:PlayerGlobalInvListTypeName[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//åˆ—è¡¨ç‰©å“ç±»å‹åç§°
+new PlayerText:PlayerGlobalInvListAT[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//åˆ—è¡¨ç‰©å“æ•°é‡åç§°
+new PlayerText:PlayerGlobalInvListAmount[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//åˆ—è¡¨ç‰©å“æ•°é‡
+new PlayerText:PlayerGlobalInvListName[MAX_PLAYERS][MAX_PLAYERGLOBALINV_SHOW_LIST];//åˆ—è¡¨ç‰©å“åç§°
 
-new PlayerText:PlayerGlobalInvSlider[MAX_PLAYERS];//ÁĞ±í½ø¶ÈÌõ
-new PlayerText:PlayerGlobalInvLimit[MAX_PLAYERS];//Íæ¼Ò¿É³Ö×î´óÊıÁ¿
+new PlayerText:PlayerGlobalInvSlider[MAX_PLAYERS];//åˆ—è¡¨è¿›åº¦æ¡
+new PlayerText:PlayerGlobalInvLimit[MAX_PLAYERS];//ç©å®¶å¯æŒæœ€å¤§æ•°é‡
 
 
-new bool:PlayerGlobalInvListShow[MAX_PLAYERS];//ÁĞ±íÊÇ·ñÏÔÊ¾
+new bool:PlayerGlobalInvListShow[MAX_PLAYERS];//åˆ—è¡¨æ˜¯å¦æ˜¾ç¤º
 /************************************************************/
 #define MAX_DOWNLOADTEXTDRAWS 2
 new Text:DownLoadTextDraw[MAX_DOWNLOADTEXTDRAWS];
@@ -276,7 +275,7 @@ new PlayerText:PlayerDownLoadSign[MAX_PLAYERS];
 new PlayerText:PlayerDownLoadProgress[MAX_PLAYERS];
 new PlayerDownLoadSignRate[MAX_PLAYERS];
 /************************************************************/
-enum Skins_Info//Æ¤·ô Í·Ïñ
+enum Skins_Info//çš®è‚¤ å¤´åƒ
 {
     _Mod@Skin,
     _Mod@Avatar
@@ -305,10 +304,10 @@ enum ItemTypes_Info
 }
 new ItemTypes[][ItemTypes_Info] =
 {
-    {"ÎŞĞ§",0},
-    {"Æ¤·ô",-2047},
-    {"×°ÊÎ",-2051},
-    {"¹¦ÄÜ",-2051}
+    {"æ— æ•ˆ",0},
+    {"çš®è‚¤",-2047},
+    {"è£…é¥°",-2051},
+    {"åŠŸèƒ½",-2051}
 
 };
 enum Item_Info
@@ -324,10 +323,10 @@ enum Item_Info
 }
 new Item[][Item_Info] =
 {
-	{"911a40ef-d74b-4a83-b74b-7f71f9841dde",ITEM_TYPE_SKIN,1,ITEM_TYPE_NONE,1,16,"·¨¹úÏÜ±øÌØÇÚ",-2059},
-	{"07892f3f-cefb-4b11-8345-b276d58d76ff",ITEM_TYPE_SKIN,2,ITEM_TYPE_NONE,2,15,"±±Å·¹ÍÓ¶±ø",-2060},
-	{"b7d80e24-f496-4333-8bf6-49b24989543d",ITEM_TYPE_SKIN,3,ITEM_TYPE_NONE,3,14,"·ÆÄá¿ËË¹±øÍÅ",-2061},
-	{"cb636990-af45-4fd2-8d80-81bfbb43b6cb",ITEM_TYPE_SKIN,4,ITEM_TYPE_NONE,4,13,"³ÇÊĞÊØ»¤Õß",-2062}
+	{"911a40ef-d74b-4a83-b74b-7f71f9841dde",ITEM_TYPE_SKIN,1,ITEM_TYPE_NONE,1,16,"æ³•å›½å®ªå…µç‰¹å‹¤",-2059},
+	{"07892f3f-cefb-4b11-8345-b276d58d76ff",ITEM_TYPE_SKIN,2,ITEM_TYPE_NONE,2,15,"åŒ—æ¬§é›‡ä½£å…µ",-2060},
+	{"b7d80e24-f496-4333-8bf6-49b24989543d",ITEM_TYPE_SKIN,3,ITEM_TYPE_NONE,3,14,"è²å°¼å…‹æ–¯å…µå›¢",-2061},
+	{"cb636990-af45-4fd2-8d80-81bfbb43b6cb",ITEM_TYPE_SKIN,4,ITEM_TYPE_NONE,4,13,"åŸå¸‚å®ˆæŠ¤è€…",-2062}
 
 /*	{"41e32d4c-7e46-47a5-bf57-c6d7a5417b55",ITEM_TYPE_OTHER,-1,ITEM_TYPE_NONE},
 	{"edb8bfbf-88ec-4a44-8701-0d01cd624f85",ITEM_TYPE_OTHER,-1,ITEM_TYPE_NONE},
@@ -426,7 +425,7 @@ new Item[][Item_Info] =
 	{"fb29f536-b3b3-46e0-8167-d8b731db6b5b",ITEM_TYPE_NONE,-1},
 	{"1baf53a6-1d3f-40e7-8a50-9b35392872d3",ITEM_TYPE_NONE,-1}*/
 };
-/************************************************************///Æ¤·ôÉÌµêÁĞ±í
+/************************************************************///çš®è‚¤å•†åº—åˆ—è¡¨
 #define MAX_SHOPTEXTDRAWS 14
 new Text:ShopBackTextDraw[MAX_SHOPTEXTDRAWS];
 enum
@@ -452,27 +451,27 @@ new PlayerShopType[MAX_PLAYERS];
 
 
 
-new PlayerText:PlayerShopListBg[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í±³¾°
-new PlayerText:PlayerShopListModel[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±íÄ£ĞÍ
-new PlayerText:PlayerShopListPriceText[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¼Û¸ñÎÄ×Ö
-new PlayerText:PlayerShopListStockText[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¿â´æÎÄ×Ö
-new PlayerText:PlayerShopListJia[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¿â´æ-
-new PlayerText:PlayerShopListJiaBack[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¿â´æ-
-new PlayerText:PlayerShopListJian[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¿â´æ+
-new PlayerText:PlayerShopListJianBack[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¿â´æ-
-new PlayerText:PlayerShopListBuyAmount[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¹ºÂòÊıÁ¿
-new PlayerText:PlayerShopListPrice[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¼Û¸ñ
-new PlayerText:PlayerShopListStock[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±í¿â´æ
-new PlayerText:PlayerShopListAvatar[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//ÁĞ±íÍ·Ïñ
+new PlayerText:PlayerShopListBg[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨èƒŒæ™¯
+new PlayerText:PlayerShopListModel[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨æ¨¡å‹
+new PlayerText:PlayerShopListPriceText[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨ä»·æ ¼æ–‡å­—
+new PlayerText:PlayerShopListStockText[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨åº“å­˜æ–‡å­—
+new PlayerText:PlayerShopListJia[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨åº“å­˜-
+new PlayerText:PlayerShopListJiaBack[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨åº“å­˜-
+new PlayerText:PlayerShopListJian[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨åº“å­˜+
+new PlayerText:PlayerShopListJianBack[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨åº“å­˜-
+new PlayerText:PlayerShopListBuyAmount[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨è´­ä¹°æ•°é‡
+new PlayerText:PlayerShopListPrice[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨ä»·æ ¼
+new PlayerText:PlayerShopListStock[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨åº“å­˜
+new PlayerText:PlayerShopListAvatar[MAX_PLAYERS][MAX_SHOP_SHOW_LIST];//åˆ—è¡¨å¤´åƒ
 
-new PlayerText:PlayerShopTitle[MAX_PLAYERS][4];//²à±ßÀ¸
-new PlayerText:PlayerShopTitleText[MAX_PLAYERS][4];//²à±ßÀ¸
-new PlayerText:PlayerShopBuyBackGround[MAX_PLAYERS];//¹ºÂò±³¾°
-new PlayerText:PlayerShopCash[MAX_PLAYERS];//Íæ¼ÒÇ®Êı
-new PlayerText:PlayerShopBill[MAX_PLAYERS];//ÕËµ¥Ç®Êı
-new PlayerText:PlayerShopSlider[MAX_PLAYERS];//½ø¶ÈÌõ
+new PlayerText:PlayerShopTitle[MAX_PLAYERS][4];//ä¾§è¾¹æ 
+new PlayerText:PlayerShopTitleText[MAX_PLAYERS][4];//ä¾§è¾¹æ 
+new PlayerText:PlayerShopBuyBackGround[MAX_PLAYERS];//è´­ä¹°èƒŒæ™¯
+new PlayerText:PlayerShopCash[MAX_PLAYERS];//ç©å®¶é’±æ•°
+new PlayerText:PlayerShopBill[MAX_PLAYERS];//è´¦å•é’±æ•°
+new PlayerText:PlayerShopSlider[MAX_PLAYERS];//è¿›åº¦æ¡
 
-new bool:PlayerShopListShow[MAX_PLAYERS];//ÁĞ±íÊÇ·ñÏÔÊ¾*/
+new bool:PlayerShopListShow[MAX_PLAYERS];//åˆ—è¡¨æ˜¯å¦æ˜¾ç¤º*/
 
 
 /************************************************************/
@@ -484,19 +483,19 @@ enum Level_Info
 }
 new Level[][Level_Info] =
 {
-    {0,-2010,5},//Ê¿ ¹Ù
-    {300,-2011,10},//ÉÙ Î¾
-    {600,-2012,20},//ÖĞ Î¾
-    {1200,-2013,30},//ÉÏ Î¾
-    {2400,-2014,40},//ÉÙ Ğ£
-    {19200,-2015,50},//ÖĞ Ğ£
-    {38400,-2016,60},//ÉÏ Ğ£
-    {76800,-2017,70},//´ó Ğ£
-    {153600,-2018,80},//ÉÙ ½«
-    {307200,-2019,90},//ÖĞ ½«
-    {614400,-2020,100}//ÉÏ ½«
+    {0,-2010,5},//å£« å®˜
+    {300,-2011,10},//å°‘ å°‰
+    {600,-2012,20},//ä¸­ å°‰
+    {1200,-2013,30},//ä¸Š å°‰
+    {2400,-2014,40},//å°‘ æ ¡
+    {19200,-2015,50},//ä¸­ æ ¡
+    {38400,-2016,60},//ä¸Š æ ¡
+    {76800,-2017,70},//å¤§ æ ¡
+    {153600,-2018,80},//å°‘ å°†
+    {307200,-2019,90},//ä¸­ å°†
+    {614400,-2020,100}//ä¸Š å°†
 };
-/************************************************************///´íÎó½çÃæ
+/************************************************************///é”™è¯¯ç•Œé¢
 new PlayerText:ErrorBoxClose[MAX_PLAYERS];//
 
 new Text:ErrorBoxBackGround;//
@@ -504,29 +503,29 @@ new Text:ErrorBoxTagBackGround;//
 new Text:ErrorBoxText_CuoWu;//
 new Text:ErrorBoxText_NoLogin;//
 new Text:ErrorBoxText_NoReg;//
-new bool:PlayerErrorBoxShow[MAX_PLAYERS];//´íÎóÏÔÊ¾
+new bool:PlayerErrorBoxShow[MAX_PLAYERS];//é”™è¯¯æ˜¾ç¤º
 new ErrorBoxCloseRate[MAX_PLAYERS];
 
 
-/************************************************************///ÔØÈë½çÃæ
+/************************************************************///è½½å…¥ç•Œé¢
 new Text:LoadingInterFaceBackGround;//
 new Text:LoadingInterFaceText;//
-/************************************************************///ÓÃ»§Ãæ°å
+/************************************************************///ç”¨æˆ·é¢æ¿
 #define MAX_ACCOUNTPTD 16
 new Text:AccountPanelTextDraw[MAX_ACCOUNTPTD];
-new PlayerText:PlayerPanelAvatar[MAX_PLAYERS];//Ãæ°åÍ·Ïñ
-new bool:PlayerPanelTextDrawShow[MAX_PLAYERS];//Ãæ°åÏÔÊ¾
+new PlayerText:PlayerPanelAvatar[MAX_PLAYERS];//é¢æ¿å¤´åƒ
+new bool:PlayerPanelTextDrawShow[MAX_PLAYERS];//é¢æ¿æ˜¾ç¤º
 
 
-new Text:AccountLevelTextDraw;//µÈ¼¶½ø¶ÈÌõ±³¾°
-new PlayerText:PlayerLevelAvatar[MAX_PLAYERS];//µÈ¼¶ÖĞÎÄÏÔÊ¾
-new PlayerText:PlayerLevelBar[MAX_PLAYERS];//µÈ¼¶½ø¶ÈÌõ
-new bool:PlayerLevelTextDrawShow[MAX_PLAYERS];//µÈ¼¶ÏÔÊ¾
+new Text:AccountLevelTextDraw;//ç­‰çº§è¿›åº¦æ¡èƒŒæ™¯
+new PlayerText:PlayerLevelAvatar[MAX_PLAYERS];//ç­‰çº§ä¸­æ–‡æ˜¾ç¤º
+new PlayerText:PlayerLevelBar[MAX_PLAYERS];//ç­‰çº§è¿›åº¦æ¡
+new bool:PlayerLevelTextDrawShow[MAX_PLAYERS];//ç­‰çº§æ˜¾ç¤º
 
-new PlayerText:PlayerRightRotArrow[MAX_PLAYERS];//ÓÒÏò¼ıÍ·
-new PlayerText:PlayerLeftRotArrow[MAX_PLAYERS];//×óÏò¼ıÍ·
-new PlayerClickRotMode[MAX_PLAYERS];//µã»÷¼ıÍ·
-/************************************************************///·¿¼äÁĞ±í
+new PlayerText:PlayerRightRotArrow[MAX_PLAYERS];//å³å‘ç®­å¤´
+new PlayerText:PlayerLeftRotArrow[MAX_PLAYERS];//å·¦å‘ç®­å¤´
+new PlayerClickRotMode[MAX_PLAYERS];//ç‚¹å‡»ç®­å¤´
+/************************************************************///æˆ¿é—´åˆ—è¡¨
 #define MAX_ROOMBACKTEXTDRAWS 16
 new Text:RoomBackTextDraw[MAX_ROOMBACKTEXTDRAWS];
 
@@ -541,46 +540,46 @@ new PlayerRoomPrevieRate[MAX_PLAYERS];
 new PlayerRoomClickID[MAX_PLAYERS];
 
 
-new PlayerText:PlayerRoomListBg[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//ÁĞ±í±³¾°
-new PlayerText:PlayerRoomListNumber[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//ÁĞ±í·¿¼äºÅ
-new PlayerText:PlayerRoomListMap[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//ÁĞ±íµØÍ¼
-new PlayerText:PlayerRoomListOwner[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//ÁĞ±í·¿Ö÷
-new PlayerText:PlayerRoomListOwnerID[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//ÁĞ±í·¿Ö÷ID
-new PlayerText:PlayerRoomListNP[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//ÁĞ±íÈËÊı
-new PlayerText:PlayerRoomListLock[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//ÁĞ±íËø
-new PlayerText:PlayerRoomListSlider[MAX_PLAYERS];//ÁĞ±í½ø¶ÈÌõ
+new PlayerText:PlayerRoomListBg[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//åˆ—è¡¨èƒŒæ™¯
+new PlayerText:PlayerRoomListNumber[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//åˆ—è¡¨æˆ¿é—´å·
+new PlayerText:PlayerRoomListMap[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//åˆ—è¡¨åœ°å›¾
+new PlayerText:PlayerRoomListOwner[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//åˆ—è¡¨æˆ¿ä¸»
+new PlayerText:PlayerRoomListOwnerID[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//åˆ—è¡¨æˆ¿ä¸»ID
+new PlayerText:PlayerRoomListNP[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//åˆ—è¡¨äººæ•°
+new PlayerText:PlayerRoomListLock[MAX_PLAYERS][MAX_ROOM_SHOW_LIST];//åˆ—è¡¨é”
+new PlayerText:PlayerRoomListSlider[MAX_PLAYERS];//åˆ—è¡¨è¿›åº¦æ¡
 
-new bool:PlayerRoomListShow[MAX_PLAYERS];//ÁĞ±íÊÇ·ñÏÔÊ¾
-/************************************************************///ÕóÓªÑ¡Ôñ
+new bool:PlayerRoomListShow[MAX_PLAYERS];//åˆ—è¡¨æ˜¯å¦æ˜¾ç¤º
+/************************************************************///é˜µè¥é€‰æ‹©
 #define MAX_GAMEROOM_CAMPSELECT 14
 new Text:GameRoomCampSelectDraw[MAX_ROOMBACKTEXTDRAWS];
-/********************ÓÎÏ·ÄÚÑ¡Ôñ*********************************/
+/********************æ¸¸æˆå†…é€‰æ‹©*********************************/
 #define MAX_GAMECONFIG_TEXTDRAWS 8
 new Text:GameConfigTextDraw[MAX_ROOMBACKTEXTDRAWS];
-new bool:PlayerGameConfigShow[MAX_PLAYERS]= {false, ...};//ÁĞ±íÊÇ·ñÏÔÊ¾
-/*************************´´½¨·¿¼ä*******************************/
+new bool:PlayerGameConfigShow[MAX_PLAYERS]= {false, ...};//åˆ—è¡¨æ˜¯å¦æ˜¾ç¤º
+/*************************åˆ›å»ºæˆ¿é—´*******************************/
 #define MAX_CREATEROOM_TEXTDRAWS 12
 new Text:CreateRoomBackTextDraw[MAX_CREATEROOM_TEXTDRAWS];
-new bool:PlayerCreateRoomShow[MAX_PLAYERS]= {false, ...};//ÁĞ±íÊÇ·ñÏÔÊ¾
-new PlayerCreateRoomMap[MAX_PLAYERS]= {0, ...};//µØÍ¼
-new PlayerCreateRoomMode[MAX_PLAYERS]= {0, ...};//Ä£Ê½
-new bool:PlayerCreateRoomLock[MAX_PLAYERS]= {false, ...};//Ëø
-new PlayerCreateRoomPassWord[MAX_PLAYERS][16];//ÃÜÂë
-new PlayerCreateRoomMaxPlayers[MAX_PLAYERS]= {0, ...};//×î´óÈËÊı
-new PlayerText:PlayerCreateRoomMapIcon[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//µØÍ¼Ô¤ÀÀ
-new PlayerText:PlayerCreateRoomMapText[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//µØÍ¼ÎÄ×Ö
-new PlayerText:PlayerCreateRoomMapLock[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//Ëø
-new PlayerText:PlayerCreateRoomMapMode[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//Ä£Ê½
-new PlayerText:PlayerCreateRoomMapPassWord[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//ÃÜÂë
-new PlayerText:PlayerCreateRoomMapMaxPlayers[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//×î´óÈËÊı
+new bool:PlayerCreateRoomShow[MAX_PLAYERS]= {false, ...};//åˆ—è¡¨æ˜¯å¦æ˜¾ç¤º
+new PlayerCreateRoomMap[MAX_PLAYERS]= {0, ...};//åœ°å›¾
+new PlayerCreateRoomMode[MAX_PLAYERS]= {0, ...};//æ¨¡å¼
+new bool:PlayerCreateRoomLock[MAX_PLAYERS]= {false, ...};//é”
+new PlayerCreateRoomPassWord[MAX_PLAYERS][16];//å¯†ç 
+new PlayerCreateRoomMaxPlayers[MAX_PLAYERS]= {0, ...};//æœ€å¤§äººæ•°
+new PlayerText:PlayerCreateRoomMapIcon[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//åœ°å›¾é¢„è§ˆ
+new PlayerText:PlayerCreateRoomMapText[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//åœ°å›¾æ–‡å­—
+new PlayerText:PlayerCreateRoomMapLock[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//é”
+new PlayerText:PlayerCreateRoomMapMode[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//æ¨¡å¼
+new PlayerText:PlayerCreateRoomMapPassWord[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//å¯†ç 
+new PlayerText:PlayerCreateRoomMapMaxPlayers[MAX_PLAYERS]= {PlayerText:INVALID_TEXT_DRAW, ...};//æœ€å¤§äººæ•°
 /************************************************************/
 #define MAX_BUYGUN_TEXTDRAWS 107
 new Text:GameRoomBuyGunTextDraw[MAX_BUYGUN_TEXTDRAWS];
-new bool:GameRoomBuyGunShow[MAX_PLAYERS]= {false, ...};//ÁĞ±íÊÇ·ñÏÔÊ¾
+new bool:GameRoomBuyGunShow[MAX_PLAYERS]= {false, ...};//åˆ—è¡¨æ˜¯å¦æ˜¾ç¤º
 new GameRoomWeaponType[MAX_PLAYERS]= {0, ...};
 new GameRoomWeaponIndex[MAX_PLAYERS]= {0, ...};
 /************************************************************/
-enum//¶Ô»°¿òID
+enum//å¯¹è¯æ¡†ID
 {
     _ERROR,
     _REGISTER,
@@ -740,7 +739,7 @@ public OnGameModeInit()
     mysql_set_charset("gbk",User@Handle);
     if(mysql_errno(User@Handle)!=0)
 	{
-		print("Á¬½ÓÊı¾İ¿âÊ§°Ü<1>");
+		print("è¿æ¥æ•°æ®åº“å¤±è´¥<1>");
 		SendRconCommand("exit");
 	}
 
@@ -750,7 +749,7 @@ public OnGameModeInit()
 
 	forex(i,MAX_GAMEROOMS/10)CreateGameRoom("SYSTEM_OWNER",random(8),0,10,false,"");
 	
-	printf("DFFÎÄ¼ş:%i  TXDÎÄ¼ş:%i ",GlobalFilesDFF,GlobalFilesTXD);
+	printf("DFFæ–‡ä»¶:%i  TXDæ–‡ä»¶:%i ",GlobalFilesDFF,GlobalFilesTXD);
 	
 	return 1;
 }
@@ -824,30 +823,30 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         return 1;
     }
     
-	if(PlayerErrorBoxShow[playerid]==true)//´íÎóÒ³Ãæ
+	if(PlayerErrorBoxShow[playerid]==true)//é”™è¯¯é¡µé¢
 	{
        	return 1;
 	}
-    if(clickedid==RoomBackTextDraw[10])//´´½¨·¿¼ä°´Å¥
+    if(clickedid==RoomBackTextDraw[10])//åˆ›å»ºæˆ¿é—´æŒ‰é’®
     {
 		if(Account[playerid][_Register]==false)return ShowPlayerErrorBox(playerid,0);
 		if(Account[playerid][_Login]==false)return ShowPlayerErrorBox(playerid,1);
 		CreatePlayerCreateRoom(playerid);
     }
-    if(clickedid==RoomBackTextDraw[11])//×Ô¶¯Æ¥Åä°´Å¥
+    if(clickedid==RoomBackTextDraw[11])//è‡ªåŠ¨åŒ¹é…æŒ‰é’®
     {
 		if(Account[playerid][_Register]==false)return ShowPlayerErrorBox(playerid,0);
 		if(Account[playerid][_Login]==false)return ShowPlayerErrorBox(playerid,1);
 		
     }
-    if(clickedid==RoomBackTextDraw[12])//·¿¼äID°´Å¥
+    if(clickedid==RoomBackTextDraw[12])//æˆ¿é—´IDæŒ‰é’®
     {
 		if(Account[playerid][_Register]==false)return ShowPlayerErrorBox(playerid,0);
 		if(Account[playerid][_Login]==false)return ShowPlayerErrorBox(playerid,1);
 		
     }
     /*******************************************************************************/
-    if(clickedid==CreateRoomBackTextDraw[5])//¸ü»»µØÍ¼--
+    if(clickedid==CreateRoomBackTextDraw[5])//æ›´æ¢åœ°å›¾--
     {
         if(PlayerCreateRoomShow[playerid]==true)
         {
@@ -868,7 +867,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
             }
         }
     }
-    if(clickedid==CreateRoomBackTextDraw[6])//¸ü»»µØÍ¼++
+    if(clickedid==CreateRoomBackTextDraw[6])//æ›´æ¢åœ°å›¾++
     {
         if(PlayerCreateRoomShow[playerid]==true)
         {
@@ -889,20 +888,20 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
             }
         }
     }
-    if(clickedid==CreateRoomBackTextDraw[9])//È·¶¨´´½¨
+    if(clickedid==CreateRoomBackTextDraw[9])//ç¡®å®šåˆ›å»º
     {
         CreateGameRoom(Account[playerid][_Key],PlayerCreateRoomMap[playerid],PlayerCreateRoomMode[playerid],GameMaxPlayer[PlayerCreateRoomMaxPlayers[playerid]][_Amount],PlayerCreateRoomLock[playerid],PlayerCreateRoomPassWord[playerid]);
         HidePlayerCreateRoom(playerid);
         RestPlayerCreateRoomDraws(playerid,true);
     }
-    if(clickedid==CreateRoomBackTextDraw[10])//È¡Ïû´´½¨
+    if(clickedid==CreateRoomBackTextDraw[10])//å–æ¶ˆåˆ›å»º
     {
         HidePlayerCreateRoom(playerid);
         RestPlayerCreateRoomDraws(playerid,true);
 
     }
     /*******************************************************************************/
-	if(clickedid==RoomBackTextDraw[7])//·¿¼äÁĞ±íÉÏÒ»Ò³
+	if(clickedid==RoomBackTextDraw[7])//æˆ¿é—´åˆ—è¡¨ä¸Šä¸€é¡µ
 	{
 	    new pages=PlayerRoomPreviePage[playerid];
     	PlayerRoomPreviePage[playerid]--;
@@ -913,7 +912,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         }
         return 1;
 	}
-	if(clickedid==RoomBackTextDraw[8])//·¿¼äÁĞ±íÏÂÒ»Ò³
+	if(clickedid==RoomBackTextDraw[8])//æˆ¿é—´åˆ—è¡¨ä¸‹ä¸€é¡µ
 	{
    		new pages=PlayerRoomPreviePage[playerid];
      	PlayerRoomPreviePage[playerid]++;
@@ -925,7 +924,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
   		return 1;
 	}
 	
-	if(clickedid==PlayerGlobalInvBackTextDraw[4])//´óÌü±³°üÁĞ±íÉÏÒ»Ò³
+	if(clickedid==PlayerGlobalInvBackTextDraw[4])//å¤§å…èƒŒåŒ…åˆ—è¡¨ä¸Šä¸€é¡µ
 	{
 	    new pages=PlayerGlobalInvPreviePage[playerid];
     	PlayerGlobalInvPreviePage[playerid]--;
@@ -936,7 +935,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         }
         return 1;
 	}
-	if(clickedid==PlayerGlobalInvBackTextDraw[5])//´óÌü±³°üÁĞ±íÏÂÒ»Ò³
+	if(clickedid==PlayerGlobalInvBackTextDraw[5])//å¤§å…èƒŒåŒ…åˆ—è¡¨ä¸‹ä¸€é¡µ
 	{
    		new pages=PlayerGlobalInvPreviePage[playerid];
      	PlayerGlobalInvPreviePage[playerid]++;
@@ -947,7 +946,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
   		}
   		return 1;
 	}
-	if(clickedid==PlayerGlobalInvBackTextDraw[7])//´óÌü±³°ü·µ»Ø´óÌü
+	if(clickedid==PlayerGlobalInvBackTextDraw[7])//å¤§å…èƒŒåŒ…è¿”å›å¤§å…
 	{
         HidePlayerGlobalInvBackGround(playerid);
         RestPlayerGlobalInvDraws(playerid,true);
@@ -963,7 +962,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
   		return 1;
 	}
 	
-	if(clickedid==ShopBackTextDraw[2])//ÉÌµêÁĞ±íÉÏÒ»Ò³
+	if(clickedid==ShopBackTextDraw[2])//å•†åº—åˆ—è¡¨ä¸Šä¸€é¡µ
 	{
 	    new pages=PlayerShopPreviePage[playerid];
     	PlayerShopPreviePage[playerid]--;
@@ -974,7 +973,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         }
         return 1;
 	}
-	if(clickedid==ShopBackTextDraw[3])//ÉÌµêÁĞ±íÏÂÒ»Ò³
+	if(clickedid==ShopBackTextDraw[3])//å•†åº—åˆ—è¡¨ä¸‹ä¸€é¡µ
 	{
    		new pages=PlayerShopPreviePage[playerid];
      	PlayerShopPreviePage[playerid]++;
@@ -985,7 +984,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
   		}
   		return 1;
 	}
-	if(clickedid==ShopBackTextDraw[8])//ÉÌµê¹ºÂò
+	if(clickedid==ShopBackTextDraw[8])//å•†åº—è´­ä¹°
 	{
 	    new PayMoney=GetPlayerBillMoney(playerid);
 	    if(PayMoney>0)
@@ -1017,11 +1016,11 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 				formatex32("%i",Account[playerid][_Cash]);
 				if(PlayerShopCash[playerid]!=PlayerText:INVALID_TEXT_DRAW)PlayerTextDrawSetString(playerid,PlayerShopCash[playerid],string32);
 			}
-			else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"´íÎó[#2]","ÄãÃ»ÓĞ×ã¹»µÄC±ÒÀ´¹ºÂò¹ºÎï³µÀïµÄÉÌÆ·","ÁË½â","");
+			else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"é”™è¯¯[#2]","ä½ æ²¡æœ‰è¶³å¤Ÿçš„Cå¸æ¥è´­ä¹°è´­ç‰©è½¦é‡Œçš„å•†å“","äº†è§£","");
 	    }
-	    else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"´íÎó[#2]","Äã»¹Ã»ÓĞ¶©¹ºÉÌÆ·","ÁË½â","");
+	    else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"é”™è¯¯[#2]","ä½ è¿˜æ²¡æœ‰è®¢è´­å•†å“","äº†è§£","");
 	}
-	if(clickedid==ShopBackTextDraw[12])//Çå¿Õ¹ºÎï³µ
+	if(clickedid==ShopBackTextDraw[12])//æ¸…ç©ºè´­ç‰©è½¦
 	{
 	    if(GetPlayerBillMoney(playerid)>0)
 	    {
@@ -1039,10 +1038,10 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 			    if(PlayerShopBill[playerid]!=PlayerText:INVALID_TEXT_DRAW)PlayerTextDrawSetString(playerid,PlayerShopBill[playerid],string32);
 			}
 		}
-		else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"´íÎó[#2]","ÄãµÄ¹ºÎï³µÀï»¹Ã»ÓĞ¶«Î÷","ÁË½â","");
+		else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"é”™è¯¯[#2]","ä½ çš„è´­ç‰©è½¦é‡Œè¿˜æ²¡æœ‰ä¸œè¥¿","äº†è§£","");
 		return 1;
 	}
-	if(clickedid==ShopBackTextDraw[10])//ÉÌµê·µ»Ø´óÌü
+	if(clickedid==ShopBackTextDraw[10])//å•†åº—è¿”å›å¤§å…
 	{
         HidePlayerShopBackGround(playerid);
         RestPlayerShopDraws(playerid,true,true);
@@ -1060,25 +1059,25 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 	
 
 	
-	if(clickedid==AccountPanelTextDraw[1])//×¢²á
+	if(clickedid==AccountPanelTextDraw[1])//æ³¨å†Œ
 	{
 	    if(Account[playerid][_Register]==false)
 	    {
-	        Dialog@Show(playerid,_REGISTER,DIALOG_STYLE_INPUT,"×¢²áÕËºÅ","ÇëÊäÈëÃÜÂëÀ´×¢²á","È·¶¨","¹Ø±Õ");
+	        Dialog@Show(playerid,_REGISTER,DIALOG_STYLE_INPUT,"æ³¨å†Œè´¦å·","è¯·è¾“å…¥å¯†ç æ¥æ³¨å†Œ","ç¡®å®š","å…³é—­");
 	    }
 	}
-	if(clickedid==AccountPanelTextDraw[2])//µÇÂ¼
+	if(clickedid==AccountPanelTextDraw[2])//ç™»å½•
 	{
 	    if(Account[playerid][_Register]==true)
 	    {
-	        Dialog@Show(playerid,_LOGIN,DIALOG_STYLE_INPUT,"µÇÂ¼ÕËºÅ","ÇëÊäÈëÃÜÂëÀ´µÇÂ¼","È·¶¨","¹Ø±Õ");
+	        Dialog@Show(playerid,_LOGIN,DIALOG_STYLE_INPUT,"ç™»å½•è´¦å·","è¯·è¾“å…¥å¯†ç æ¥ç™»å½•","ç¡®å®š","å…³é—­");
 	    }
 	}
-	if(clickedid==AccountPanelTextDraw[6])//ÇåÆÁ°´Å¥
+	if(clickedid==AccountPanelTextDraw[6])//æ¸…å±æŒ‰é’®
 	{
 	    ClearChat(playerid);
 	}
-	if(clickedid==AccountPanelTextDraw[4])//Æ¤·ôÉÌµê
+	if(clickedid==AccountPanelTextDraw[4])//çš®è‚¤å•†åº—
 	{
         HidePlayerRoomBackGround(playerid);
         RestPlayerRoomListDraws(playerid,true);
@@ -1096,7 +1095,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 //		ShowSkinShopBackGround(playerid);
 //        CreateSkinShopPage(playerid,1);
 	}
-	if(clickedid==AccountPanelTextDraw[3])//´óÌü±³°ü
+	if(clickedid==AccountPanelTextDraw[3])//å¤§å…èƒŒåŒ…
 	{
         HidePlayerRoomBackGround(playerid);
         RestPlayerRoomListDraws(playerid,true);
@@ -1112,7 +1111,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         CreatePlayerGlobalInvPage(playerid,1);
 	}
 	/*********************************************************************/
-	if(clickedid==GameRoomCampSelectDraw[2])//Ñ¡Ôñ¿Ö²À·Ö×Ó
+	if(clickedid==GameRoomCampSelectDraw[2])//é€‰æ‹©ææ€–åˆ†å­
 	{
 	    HidePlayerGameRoomCampSelect(playerid);
 	    new GameID=PlayerGameRoom[playerid][_GameID];
@@ -1128,7 +1127,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         SetPlayerArmour(playerid,0.0);
         AddPlayerInGameRoomTag(playerid,GameID,TEAM_TER);
 	}
-	if(clickedid==GameRoomCampSelectDraw[3])//Ñ¡Ôñ·´¿Ö¾«Ó¢
+	if(clickedid==GameRoomCampSelectDraw[3])//é€‰æ‹©åæç²¾è‹±
 	{
 	    HidePlayerGameRoomCampSelect(playerid);
 	    new GameID=PlayerGameRoom[playerid][_GameID];
@@ -1144,29 +1143,29 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         SetPlayerArmour(playerid,0.0);
         AddPlayerInGameRoomTag(playerid,GameID,TEAM_COP);
 	}
-	if(clickedid==GameRoomCampSelectDraw[4])//Ñ¡Ôñ×Ô¶¯·ÖÅä
+	if(clickedid==GameRoomCampSelectDraw[4])//é€‰æ‹©è‡ªåŠ¨åˆ†é…
 	{
 	}
-	if(clickedid==GameRoomCampSelectDraw[5])//Ñ¡Ôñ¹Û²ìÕß
+	if(clickedid==GameRoomCampSelectDraw[5])//é€‰æ‹©è§‚å¯Ÿè€…
 	{
 	}
-	if(clickedid==GameRoomCampSelectDraw[6])//Ñ¡ÔñÀë¿ª
+	if(clickedid==GameRoomCampSelectDraw[6])//é€‰æ‹©ç¦»å¼€
 	{
 	    QuitPlayerFromGameRoom(playerid);
 	}
 	/*********************************************************************/
-	if(clickedid==GameConfigTextDraw[0])//·µ»Ø·¿¼ä
+	if(clickedid==GameConfigTextDraw[0])//è¿”å›æˆ¿é—´
 	{
 	    HidePlayerGameConfig(playerid);
 		CancelSelectTextDraw(playerid);
 	}
-	if(clickedid==GameConfigTextDraw[1])//·¿¼äÅÅĞĞ
+	if(clickedid==GameConfigTextDraw[1])//æˆ¿é—´æ’è¡Œ
 	{
 	}
-	if(clickedid==GameConfigTextDraw[2])//¸ü»»ÕóÓª
+	if(clickedid==GameConfigTextDraw[2])//æ›´æ¢é˜µè¥
 	{
 	}
-	if(clickedid==GameConfigTextDraw[3])//Àë¿ª·¿¼ä
+	if(clickedid==GameConfigTextDraw[3])//ç¦»å¼€æˆ¿é—´
 	{
 	    QuitPlayerFromGameRoom(playerid);
 	}
@@ -1188,7 +1187,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 	}
 	////////////////////////////////////////////////////////////////////
 	
-	if(clickedid==GameRoomBuyGunTextDraw[4])//¹ºÂòÊÖÇ¹½çÃæ
+	if(clickedid==GameRoomBuyGunTextDraw[4])//è´­ä¹°æ‰‹æªç•Œé¢
 	{
 	    ShowPlayerBuyPistol(playerid);
 	}
@@ -1224,7 +1223,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 	    GameRoomWeaponIndex[playerid]=3;
 	}
 	/////////////////////////////////////////////////////////////////////
-	if(clickedid==GameRoomBuyGunTextDraw[5])//¹ºÂòÉ¢µ¯½çÃæ
+	if(clickedid==GameRoomBuyGunTextDraw[5])//è´­ä¹°æ•£å¼¹ç•Œé¢
 	{
 	    ShowPlayerBuyShotgun(playerid);
 	}
@@ -1269,7 +1268,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 	    GameRoomWeaponIndex[playerid]=3;
 	}
 	/////////////////////////////////////////////////////////////////////
-	if(clickedid==GameRoomBuyGunTextDraw[6])//¹ºÂòUZI½çÃæ
+	if(clickedid==GameRoomBuyGunTextDraw[6])//è´­ä¹°UZIç•Œé¢
 	{
 	    ShowPlayerBuyUzi(playerid);
 	}
@@ -1314,7 +1313,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 	    GameRoomWeaponIndex[playerid]=3;
 	}
 	/////////////////////////////////////////////////////////////////////
-	if(clickedid==GameRoomBuyGunTextDraw[7])//¹ºÂò²½Ç¹½çÃæ
+	if(clickedid==GameRoomBuyGunTextDraw[7])//è´­ä¹°æ­¥æªç•Œé¢
 	{
 	    ShowPlayerBuyRifle(playerid);
 	}
@@ -1371,7 +1370,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 	    GameRoomWeaponIndex[playerid]=4;
 	}
 	/////////////////////////////////////////////////////////////////////
-	if(clickedid==GameRoomBuyGunTextDraw[11])//¹ºÂò×°±¸½çÃæ
+	if(clickedid==GameRoomBuyGunTextDraw[11])//è´­ä¹°è£…å¤‡ç•Œé¢
 	{
 	    ShowPlayerBuyEquipment(playerid);
 	}
@@ -1466,7 +1465,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 		/***********************************************************************************************/
-        if(playertextid == PlayerRightRotArrow[playerid])//ÈËÎïÓÒĞı×ª
+        if(playertextid == PlayerRightRotArrow[playerid])//äººç‰©å³æ—‹è½¬
         {
             if(PlayerClickRotMode[playerid]==2)
             {
@@ -1484,7 +1483,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
             return 1;
 
         }
-        if(playertextid == PlayerLeftRotArrow[playerid])//ÈËÎï×óĞı×ª
+        if(playertextid == PlayerLeftRotArrow[playerid])//äººç‰©å·¦æ—‹è½¬
         {
             if(PlayerClickRotMode[playerid]==1)
             {
@@ -1502,7 +1501,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
             return 1;
         }
         /***********************************************************************************************/
-		forex(i,MAX_ROOM_SHOW_LIST)//²éÕÒµã»÷·¿¼äID-µØÍ¼
+		forex(i,MAX_ROOM_SHOW_LIST)//æŸ¥æ‰¾ç‚¹å‡»æˆ¿é—´ID-åœ°å›¾
 		{
 		    if(playertextid==PlayerRoomListMap[playerid][i])
 			{
@@ -1515,7 +1514,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
                 return 1;
 			}
 		}
-		forex(i,MAX_ROOM_SHOW_LIST)//²éÕÒµã»÷·¿¼ä-·¿Ö÷
+		forex(i,MAX_ROOM_SHOW_LIST)//æŸ¥æ‰¾ç‚¹å‡»æˆ¿é—´-æˆ¿ä¸»
 		{
 		    if(playertextid==PlayerRoomListOwner[playerid][i])
 			{
@@ -1528,7 +1527,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
                 return 1;
 			}
 		}
-		forex(i,MAX_ROOM_SHOW_LIST)//²éÕÒµã»÷·¿¼ä-ID
+		forex(i,MAX_ROOM_SHOW_LIST)//æŸ¥æ‰¾ç‚¹å‡»æˆ¿é—´-ID
 		{
 		    if(playertextid==PlayerRoomListBg[playerid][i])
 			{
@@ -1552,10 +1551,10 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			    new str[8],body[128];
 			    forex(i,sizeof(GameMaxPlayer))
 			    {
-			        format(str,sizeof(str),"%iÈË\n",GameMaxPlayer[i][_Amount]);
+			        format(str,sizeof(str),"%iäºº\n",GameMaxPlayer[i][_Amount]);
 			        strcat(body,str);
 			    }
-			    Dialog@Show(playerid,_CREATEROOM_MAXPLAYERS,DIALOG_STYLE_LIST,"ÉèÖÃ×î´óÈËÊı",body,"È·¶¨","·µ»Ø");
+			    Dialog@Show(playerid,_CREATEROOM_MAXPLAYERS,DIALOG_STYLE_LIST,"è®¾ç½®æœ€å¤§äººæ•°",body,"ç¡®å®š","è¿”å›");
 			}
 			if(playertextid==PlayerCreateRoomMapLock[playerid])
 			{
@@ -1587,12 +1586,12 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		                PlayerTextDrawShow(playerid,PlayerCreateRoomMapPassWord[playerid]);
 		            }
 		            PlayerCreateRoomLock[playerid]=true;
-		            Dialog@Show(playerid,_CREATEROOM_PASSWORD,DIALOG_STYLE_INPUT,"ÉèÖÃÃÜÂë","ÇëÊäÈëÒªÉèÖÃµÄ·¿¼äÃÜÂë\nÖ»ÄÜÊı×Ö","È·¶¨","·µ»Ø");
+		            Dialog@Show(playerid,_CREATEROOM_PASSWORD,DIALOG_STYLE_INPUT,"è®¾ç½®å¯†ç ","è¯·è¾“å…¥è¦è®¾ç½®çš„æˆ¿é—´å¯†ç \nåªèƒ½æ•°å­—","ç¡®å®š","è¿”å›");
 			    }
 			}
 		}
 		/***********************************************************************************************/
-		forex(i,4)//ÉÌµê·ÖÀàÁĞ±í
+		forex(i,4)//å•†åº—åˆ†ç±»åˆ—è¡¨
 		{
 			if(playertextid==PlayerShopTitle[playerid][i])
 			{
@@ -1603,7 +1602,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 				}
 			}
 		}
-		forex(i,MAX_SHOP_SHOW_LIST)//+ÊıÁ¿
+		forex(i,MAX_SHOP_SHOW_LIST)//+æ•°é‡
 		{
 		    if(playertextid==PlayerShopListJiaBack[playerid][i])
 			{
@@ -1630,14 +1629,14 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 								PlayerTextDrawSetString(playerid,PlayerShopBill[playerid],string32);
 					        }
 				        }
-				        else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"´íÎó[#1]","±³°ü³ĞÔØ´ïµ½ÉÏÏŞ,ÎŞ·¨Ìí¼ÓĞÂµÄÉÌÆ·»òÊıÁ¿","ÁË½â","");
+				        else Dialog@Show(playerid,_ERROR,DIALOG_STYLE_MSGBOX,"é”™è¯¯[#1]","èƒŒåŒ…æ‰¿è½½è¾¾åˆ°ä¸Šé™,æ— æ³•æ·»åŠ æ–°çš„å•†å“æˆ–æ•°é‡","äº†è§£","");
 			        }
 			        return 1;
 			    }
                 
 			}
 		}
-		forex(i,MAX_SHOP_SHOW_LIST)//-ÊıÁ¿
+		forex(i,MAX_SHOP_SHOW_LIST)//-æ•°é‡
 		{
 		    if(playertextid==PlayerShopListJianBack[playerid][i])
 			{
@@ -1667,7 +1666,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			}
 		}
 		/***********************************************************************************************/
-		forex(i,MAX_PLAYERGLOBALINV_SHOW_LIST)//²éÕÒµã»÷´óÌü±³°üID
+		forex(i,MAX_PLAYERGLOBALINV_SHOW_LIST)//æŸ¥æ‰¾ç‚¹å‡»å¤§å…èƒŒåŒ…ID
 		{
 		    if(playertextid==PlayerGlobalInvListBg[playerid][i])
 			{
@@ -1725,7 +1724,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	if(Dialog@GetIndex(playerid)!=dialogid)
 	{
-		formatex128("%s ¿ÉÄÜÊ¹ÓÃ¶Ô»°¿ò×÷±×[%i - %i]",Account[playerid][_Name],Dialog@GetIndex(playerid),dialogid);
+		formatex128("%s å¯èƒ½ä½¿ç”¨å¯¹è¯æ¡†ä½œå¼Š[%i - %i]",Account[playerid][_Name],Dialog@GetIndex(playerid),dialogid);
         printf(string128);
 	    return 1;
 	}
@@ -1845,13 +1844,13 @@ public OnPlayerRequestClass(playerid, classid)
 CMD:an(playerid, params[], help)
 {
 	SetPlayerFacingAngle(playerid,random(360));
-	SCM(playerid,-1,"³É¹¦");
+	SCM(playerid,-1,"æˆåŠŸ");
 	return 1;
 }
 CMD:level(playerid, params[], help)
 {
 	new change;
-	if(sscanf(params, "i",change))return SCM(playerid,-1,"´íÎó");
+	if(sscanf(params, "i",change))return SCM(playerid,-1,"é”™è¯¯");
 	PlayerLevelUpdate(playerid,change);
 	return 1;
 }
