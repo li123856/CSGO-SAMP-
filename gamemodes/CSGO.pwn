@@ -8,6 +8,7 @@
 //#include <sv-weap>
 #include <stringedit>
 #include <3DTryg>
+#pragma tabsize 0
 
 #define UUID_LEN (37)
 native UUID(result[], len = sizeof result);
